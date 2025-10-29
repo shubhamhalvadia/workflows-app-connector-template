@@ -1,0 +1,4 @@
+module_settings:
+  module_name: "Delete Rows"
+  module_description: "Delete specific rows from a Google Sheet"
+

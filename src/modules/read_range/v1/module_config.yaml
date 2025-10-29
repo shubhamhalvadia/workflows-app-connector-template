@@ -1,0 +1,5 @@
+module_settings:
+  module_name: "Read Range"
+  module_description: "Read values from a Google Sheets range"
+
+

@@ -1,0 +1,108 @@
+{
+  "metadata": {
+    "workflows_module_schema_version": "1.0.0"
+  },
+  "fields": [
+    {
+      "type": "connection",
+      "id": "gsheets_connection",
+      "label": "Google Sheets Connection",
+      "allowed_app_types": ["google_sheets"],
+      "allowed_connection_management_types": ["managed", "custom"],
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "spreadsheet_id",
+      "label": "Spreadsheet ID",
+      "description": "The ID of the Google Spreadsheet",
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "object",
+      "id": "sheet",
+      "label": "Sheet",
+      "description": "Select the sheet/tab to delete rows from",
+      "ui_options": {
+        "ui_widget": "SelectWidget"
+      },
+      "choices": {
+        "values": []
+      },
+      "content": {
+        "type": ["managed"],
+        "content_objects": [
+          {
+            "id": "sheets_by_spreadsheet"
+          }
+        ]
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "integer",
+      "id": "row_start",
+      "label": "Start Row",
+      "description": "First row to delete (1-based index)",
+      "validation": {
+        "required": true,
+        "minimum": 1
+      }
+    },
+    {
+      "type": "integer",
+      "id": "row_end",
+      "label": "End Row",
+      "description": "Last row to delete (1-based index, inclusive)",
+      "validation": {
+        "required": true,
+        "minimum": 1
+      }
+    }
+  ],
+  "rules": [
+    {
+      "if": {
+        "and": [
+          {
+            "id": "row_end",
+            "operator": "is_not_empty"
+          },
+          {
+            "id": "row_start",
+            "operator": "is_not_empty"
+          }
+        ]
+      },
+      "then": {
+        "fields": [
+          {
+            "id": "row_end",
+            "validation": {
+              "minimum": {
+                "$field_value": "row_start"
+              }
+            },
+            "apply_as": "merge"
+          }
+        ]
+      }
+    }
+  ],
+  "ui_options": {
+    "ui_order": [
+      "gsheets_connection",
+      "spreadsheet_id",
+      "sheet",
+      "row_start",
+      "row_end"
+    ]
+  }
+}
+

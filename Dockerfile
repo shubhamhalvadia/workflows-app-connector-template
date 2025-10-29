@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-bookworm
 ARG ENVIRONMENT
 
 WORKDIR /usr/src/app
@@ -6,8 +6,8 @@ WORKDIR /usr/src/app
 # upgrade to latest pip
 RUN pip install --upgrade pip
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y git
+    apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install workflows-cdk package
 RUN pip install git+https://github.com/stacksyncdata/workflows-cdk.git@prod

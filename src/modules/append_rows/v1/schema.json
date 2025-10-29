@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "workflows_module_schema_version": "1.0.0"
+  },
+  "fields": [
+    {
+      "type": "connection",
+      "id": "gsheets_connection",
+      "label": "Google Sheets Connection",
+      "allowed_app_types": ["google_sheets"],
+      "allowed_connection_management_types": ["managed", "custom"],
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "spreadsheet_id",
+      "label": "Spreadsheet ID",
+      "description": "The ID of the Google Spreadsheet",
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "object",
+      "id": "sheet",
+      "label": "Sheet",
+      "description": "Select the sheet/tab to append rows to",
+      "ui_options": {
+        "ui_widget": "SelectWidget"
+      },
+      "choices": {
+        "values": []
+      },
+      "content": {
+        "type": ["managed"],
+        "content_objects": [
+          {
+            "id": "sheets_by_spreadsheet"
+          }
+        ]
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "rows",
+      "label": "Rows Data",
+      "description": "JSON array of rows. Each row is an array of values. Example: [[\"Name\", \"Age\"], [\"John\", \"30\"]]",
+      "ui_options": {
+        "ui_widget": "CodeblockWidget",
+        "ui_options": {
+          "language": "json"
+        }
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "object",
+      "id": "value_input_option",
+      "label": "Value Input Option",
+      "description": "How to interpret input values",
+      "ui_options": {
+        "ui_widget": "SelectWidget"
+      },
+      "choices": {
+        "values": [
+          {
+            "value": {"id": "RAW", "label": "Raw"},
+            "label": "Raw"
+          },
+          {
+            "value": {"id": "USER_ENTERED", "label": "User Entered"},
+            "label": "User Entered"
+          }
+        ]
+      },
+      "default": {"id": "USER_ENTERED", "label": "User Entered"}
+    }
+  ],
+  "ui_options": {
+    "ui_order": [
+      "gsheets_connection",
+      "spreadsheet_id",
+      "sheet",
+      "rows",
+      "value_input_option"
+    ]
+  }
+}
+

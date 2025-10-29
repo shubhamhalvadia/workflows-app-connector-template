@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "workflows_module_schema_version": "1.0.0"
+  },
+  "fields": [
+    {
+      "type": "connection",
+      "id": "gsheets_connection",
+      "label": "Google Sheets Connection",
+      "allowed_app_types": ["google_sheets"],
+      "allowed_connection_management_types": ["managed", "custom"],
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "spreadsheet_id",
+      "label": "Spreadsheet ID",
+      "description": "The ID of the Google Spreadsheet",
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "range_a1",
+      "label": "Range (A1 Notation)",
+      "description": "The range to update in A1 notation (e.g., Sheet1!A1:B10 or A1:B10)",
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "string",
+      "id": "values",
+      "label": "Values",
+      "description": "JSON 2D array of values to write. Example: [[\"Name\", \"Age\"], [\"John\", 30]]",
+      "default": "[\n  [\"Name\", \"Age\", \"City\"],\n  [\"John Doe\", 30, \"New York\"],\n  [\"Jane Smith\", 25, \"Los Angeles\"]\n]",
+      "ui_options": {
+        "ui_widget": "CodeblockWidget",
+        "ui_options": {
+          "language": "json"
+        }
+      },
+      "validation": {
+        "required": true
+      }
+    },
+    {
+      "type": "object",
+      "id": "value_input_option",
+      "label": "Value Input Option",
+      "description": "How to interpret input values",
+      "ui_options": {
+        "ui_widget": "SelectWidget"
+      },
+      "choices": {
+        "values": [
+          {
+            "value": {"id": "RAW", "label": "Raw"},
+            "label": "Raw"
+          },
+          {
+            "value": {"id": "USER_ENTERED", "label": "User Entered"},
+            "label": "User Entered"
+          }
+        ]
+      },
+      "default": {"id": "USER_ENTERED", "label": "User Entered"}
+    }
+  ],
+  "ui_options": {
+    "ui_order": [
+      "gsheets_connection",
+      "spreadsheet_id",
+      "range_a1",
+      "values",
+      "value_input_option"
+    ]
+  }
+}
+

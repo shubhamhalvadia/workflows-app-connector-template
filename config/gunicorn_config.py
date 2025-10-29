@@ -6,6 +6,11 @@ errorlog = "-"   # Print error log to stdout
 capture_output = True
 enable_stdio_inheritance = True
 
-workers = 2
-threads = 1
+# Optimized for I/O-bound workloads (API calls to Google Sheets)
+# 4 workers × 4 threads = 16 concurrent requests (3-4x throughput improvement)
+workers = 4
+threads = 4
 timeout = 360
+
+# Connection pooling works best with worker_class = "sync" (default)
+# Each worker reuses HTTP connections via requests.Session

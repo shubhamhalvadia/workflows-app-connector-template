@@ -1,0 +1,74 @@
+{
+  "metadata": { "workflows_module_schema_version": "1.0.0" },
+  "fields": [
+    {
+      "type": "connection",
+      "id": "gsheets_connection",
+      "label": "Google Sheets Connection",
+      "allowed_app_types": ["google_sheets"],
+      "allowed_connection_management_types": ["managed", "custom"],
+      "validation": { "required": true }
+    },
+    {
+      "type": "string",
+      "id": "spreadsheet_id",
+      "label": "Spreadsheet ID",
+      "validation": { "required": true }
+    },
+    {
+      "type": "object",
+      "id": "sheet",
+      "label": "Sheet",
+      "ui_options": { "ui_widget": "SelectWidget" },
+      "choices": { "values": [] },
+      "content": {
+        "type": ["managed"],
+        "content_objects": [{ "id": "sheets_by_spreadsheet" }]
+      }
+    },
+    {
+      "type": "string",
+      "id": "range_a1",
+      "label": "Range (A1 Notation)",
+      "description": "If provided, overrides selected sheet",
+      "validation": { "required": false }
+    },
+    {
+      "type": "object",
+      "id": "value_render_option",
+      "label": "Value Render Option",
+      "ui_options": { "ui_widget": "SelectWidget" },
+      "choices": {
+        "values": [
+          { "value": {"id": "FORMATTED_VALUE", "label": "Formatted"}, "label": "Formatted" },
+          { "value": {"id": "UNFORMATTED_VALUE", "label": "Unformatted"}, "label": "Unformatted" },
+          { "value": {"id": "FORMULA", "label": "Formula"}, "label": "Formula" }
+        ]
+      }
+    },
+    {
+      "type": "object",
+      "id": "date_time_render_option",
+      "label": "Date/Time Render Option",
+      "ui_options": { "ui_widget": "SelectWidget" },
+      "choices": {
+        "values": [
+          { "value": {"id": "SERIAL_NUMBER", "label": "Serial Number"}, "label": "Serial Number" },
+          { "value": {"id": "FORMATTED_STRING", "label": "Formatted String"}, "label": "Formatted String" }
+        ]
+      }
+    }
+  ],
+  "ui_options": {
+    "ui_order": [
+      "gsheets_connection",
+      "spreadsheet_id",
+      "sheet",
+      "range_a1",
+      "value_render_option",
+      "date_time_render_option"
+    ]
+  }
+}
+
+

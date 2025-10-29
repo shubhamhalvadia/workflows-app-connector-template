@@ -1,0 +1,4 @@
+module_settings:
+  module_name: "Update Range"
+  module_description: "Update values in a specific range of a Google Sheet"
+

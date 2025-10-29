@@ -1,0 +1,4 @@
+module_settings:
+  module_name: "Append Rows"
+  module_description: "Append new rows to a Google Sheet"
+
