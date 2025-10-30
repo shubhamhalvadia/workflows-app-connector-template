@@ -20,7 +20,6 @@ docker run --rm -it --env-file tests/env.test --entrypoint python3 workflows-con
 ```
 
 When prompted, enter your Google OAuth token and Spreadsheet ID.  
-**See [HOW_TO_RUN_TESTS.md](HOW_TO_RUN_TESTS.md) for detailed instructions.**
 
 ---
 
