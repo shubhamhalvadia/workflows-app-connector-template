@@ -6,8 +6,7 @@ from workflows_cdk import ManagedError
 
 
 GOOGLE_SHEETS_API_BASE = "https://sheets.googleapis.com/v4/spreadsheets"
-DEFAULT_RANGE_COLUMNS = "A:Z"
-DEFAULT_RANGE_ROWS = "1:100"
+DEFAULT_RANGE = "A1:Z100"  # Default range for reading when only sheet is specified
 
 # Create a persistent session for connection pooling (reuses TCP/TLS connections)
 # This reduces latency by 50-70% for subsequent requests to the same host

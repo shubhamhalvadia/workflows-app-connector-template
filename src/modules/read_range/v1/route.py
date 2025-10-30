@@ -1,7 +1,7 @@
 from flask import request as flask_request
 from workflows_cdk import Response, Request, ManagedError
 from main import router
-from src.utils.google_sheets import read_values, validate_a1_notation, DEFAULT_RANGE_COLUMNS, DEFAULT_RANGE_ROWS
+from src.utils.google_sheets import read_values, validate_a1_notation, DEFAULT_RANGE
 from src.utils.common_content import get_sheets_content
 from src.utils.auth_helper import get_token_from_request
 from src.utils.validation_helpers import extract_sheet_label
@@ -31,7 +31,7 @@ def execute():
     if not range_a1:
         if sheet:
             sheet_label = extract_sheet_label(sheet)
-            range_a1 = f"{sheet_label}!{DEFAULT_RANGE_COLUMNS}{DEFAULT_RANGE_ROWS}"
+            range_a1 = f"{sheet_label}!{DEFAULT_RANGE}"
         else:
             raise ManagedError.validation_error("Provide range_a1 or select a sheet")
     else:

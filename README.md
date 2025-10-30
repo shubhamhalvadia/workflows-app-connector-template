@@ -1,8 +1,26 @@
 # Google Sheets Workflow Connector
 
 **Assignment for:** Alexis (CTO, Stacksync)  
-**Developer:** Shubham Halvadia
+**Developer:** Shubham Halvadia  
 **Total Development Time:** ~8 hours  
+
+---
+
+## 🚀 Quick Start
+
+### Run the Connector
+```bash
+./run_dev.sh
+```
+
+### Run All Tests (Unit + E2E with Interactive Prompts)
+```bash
+docker build -t workflows-connector-test -f config/Dockerfile.dev .
+docker run --rm -it --env-file tests/env.test --entrypoint python3 workflows-connector-test -m pytest -v -s
+```
+
+When prompted, enter your Google OAuth token and Spreadsheet ID.  
+**See [HOW_TO_RUN_TESTS.md](HOW_TO_RUN_TESTS.md) for detailed instructions.**
 
 ---
 
